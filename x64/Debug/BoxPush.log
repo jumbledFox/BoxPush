@@ -1,9 +1,5 @@
-﻿  keyboard.cpp
-  main.cpp
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\gl\vertex_array.hpp(73,1): warning C4312: 'type cast': conversion from 'unsigned int' to 'void *' of greater size
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\main.cpp(40): message : see reference to function template instantiation 'void gl::VertexArray::addVertexBuffer<GLfloat>(const std::vector<GLfloat,std::allocator<GLfloat>> &,const gl::BufferLayoutList &)' being compiled
-  window.cpp
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\window.cpp(100,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+﻿  level.cpp
+  tile_data.cpp
   Generating Code...
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\gl\vertex_array.hpp(25): warning C4715: 'gl::BufferLayout::size': not all control paths return a value
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   BoxPush.vcxproj -> F:\Data\Projects\C++OpenGL\NewbieProjects\x64\Debug\BoxPush.exe

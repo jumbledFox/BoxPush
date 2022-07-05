@@ -4,6 +4,7 @@
 in float fLighting;
 in vec2 fTexCoords;
 flat in unsigned int fTextureID;
+flat in unsigned ivec2 fColors;
 
 // Out fragment color
 out vec4 FragColor;
@@ -33,9 +34,17 @@ void main() {
 	// Then multiply it by the size of each texture
 	// Then divide it by (texture size * amount of textures)
 
+	// Changing the colors
+	vec4 BAWtext = texture(textureAtlas, (atlasCoord) * 8 / 64);
+
+	uint color = (BAWtext.x == 0) ? fColors.x : fColors.y;
+
+	vec4 tex = vec4(colors[color] / 255, BAWtext.w);
+
+
 	// Multiplied by the lighting value
-	FragColor = lighting * texture(textureAtlas, (atlasCoord) * 8 / 64);
+	FragColor = lighting * tex;
 	
-	// Discard the fragment if it's transparent (No support for semitransparency i think...)
+	// Discard the fragment if it's transparent
 	if (FragColor.w == 0) { discard; }
 }

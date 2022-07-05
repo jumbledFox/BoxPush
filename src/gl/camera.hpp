@@ -20,7 +20,7 @@ public:
 	void setFov(float newFov) { fov = newFov; }
 	void setAspectRatio(float newAspectRatio) { aspectRatio = newAspectRatio; }
 
-private:
+public:
 	// Projection matrix
 	glm::mat4 m_projection{ 1.0f };
 	// Projection * View matrix

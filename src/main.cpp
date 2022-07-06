@@ -14,16 +14,30 @@
 
 #include "window.hpp"
 #include "input/keyboard.hpp"
+#include "game/tile_data.hpp"
 
 #include "gl/vertex_array.hpp"
 #include "gl/shader.hpp"
 #include "gl/camera.hpp"
 #include "gl/texture.hpp"
 
+TileDataManager tdm;
 
 int main() {
 	Window::loadOpenGL("jumbledFox's pushingBoxes");
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	std::vector<TileData> tiles = {
+		{"Air",    0, TileColor::Black,     TileColor::Black,  63, 63},
+		{"Wall",   1, TileColor::LightGray, TileColor::Gray,   0,  0},
+		{"Grass",  0, TileColor::Lime,      TileColor::Green,  32, 32}
+
+		// MAYBE Special stuff
+		//{"Player", 0, TileColor::Orange,    TileColor::Black,  16, 16},
+		//{"Box",    0, TileColor::Orange,    TileColor::Purple, 8,  8}
+	};
+
+	tdm.addTilesData(tiles);
 
 	gl::Shader shader("res/shaders/block.vert", "res/shaders/block.frag");
 	gl::Texture spriteSheet("res/sprites.png", GL_RGB);

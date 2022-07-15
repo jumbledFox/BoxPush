@@ -12,11 +12,23 @@ out vec4 FragColor;
 // The texture atlas
 uniform sampler2D textureAtlas;
 
-vec3 colors[4] = vec3[4](
-	vec3(26,  28,  44),
-	vec3(93,  39,  93),
-	vec3(177, 62,  83),
-	vec3(239, 125, 87)
+vec3 colors[16] = vec3[16](
+	vec3(26,  28,  44) / 255,
+	vec3(93,  39,  93) / 255,
+	vec3(177, 62,  83) / 255,
+	vec3(239, 125, 87) / 255,
+	vec3(255, 205, 117) / 255,
+	vec3(167, 240, 112) / 255,
+	vec3(56 , 183, 100) / 255,
+	vec3(37 , 113, 121) / 255,
+	vec3(41 , 54 , 111) / 255,
+	vec3(59 , 93 , 201) / 255,
+	vec3(65 , 166, 246) / 255,
+	vec3(115, 239, 247) / 255,
+	vec3(244, 244, 244) / 255,
+	vec3(148, 176, 194) / 255,
+	vec3(86 , 108, 134) / 255,
+	vec3(51 , 60 , 87) / 255
 );
 
 
@@ -39,11 +51,13 @@ void main() {
 
 	uint color = (BAWtext.x == 0) ? fColors.x : fColors.y;
 
-	vec4 tex = vec4(colors[color] / 255, BAWtext.w);
+	vec4 tex = vec4(colors[color], BAWtext.w);
 
 
 	// Multiplied by the lighting value
-	FragColor = lighting * tex;
+	FragColor = mix(vec4(colors[0], 1), tex, clamp(fLighting, 0, 1));
+
+	//FragColor = lighting;
 	
 	// Discard the fragment if it's transparent
 	if (FragColor.w == 0) { discard; }

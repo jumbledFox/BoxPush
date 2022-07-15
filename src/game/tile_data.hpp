@@ -9,7 +9,8 @@
 
 using tile_t = uint8_t;
 
-enum class TileColor {
+// Color enum
+enum class TileColor : int {
 	Black = 0,
 	Purple = 1,
 	Red = 2,
@@ -28,24 +29,32 @@ enum class TileColor {
 	DarkGray = 15
 };
 
+struct TextureData {
+	TileColor foreCol; // Color that will replace white
+	TileColor backCol; // Color that will replace black
+	uint8_t id;
+};
+
 struct TileData {
 	tile_t id = 0;
 	std::string name;
-	TileColor foregroundColor; // Color that will replace white
-	TileColor backgroundColor; // Color that will replace black
-	uint8_t topTextureID = 63;
-	uint8_t sideTextureID = 63;
+	TextureData top;
+	TextureData side;
 
+	// How raised it is
 	int raised = 0;
 
-	TileData(std::string name, int r, TileColor fg, TileColor bg, uint8_t ttid, uint8_t stid)  :
-	name(name), raised(r), foregroundColor(fg), backgroundColor(bg), topTextureID(ttid), sideTextureID(stid) {}
+	TileData(std::string name, int r, TextureData top, TextureData side) :
+		name(name), raised(r), top(top), side(side) {}
+
+	TileData(std::string name, int r, TextureData t) :
+		name(name), raised(r), top(t), side(t) {}
 };
 
 
-class TileDataManager {
-public:
-	TileDataManager();
+namespace TileDataManager {
+	// Initialise stuff
+	void initialise();
 
 	// Adds a tile to the data manager
 	void addTileData(const TileData& tile);
@@ -53,16 +62,16 @@ public:
 	void addTilesData(const std::vector<TileData>& tileV);
 
 	// Gets a tile from its ID
-	TileData getTileData(const tile_t& id) const;
+	TileData getTileData(const tile_t& id);
 	// Gets a tile from its name
-	TileData getTileData(const std::string& name) const;
+	TileData getTileData(const std::string& name);
 
 	// Get the ID of a tile from its name
-	tile_t getIdFromName(const std::string& name) const;
+	tile_t getIdFromName(const std::string& name);
 
-private:
+
 	// Vector of TileDatas
-	std::vector<TileData> tiles;
+	extern std::vector<TileData> tiles;
 	// Map of names and their IDs
-	std::unordered_map<std::string, tile_t> nameIDs;
+	extern std::unordered_map<std::string, tile_t> nameIDs;
 };

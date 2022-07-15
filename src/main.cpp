@@ -15,55 +15,33 @@
 #include "window.hpp"
 #include "input/keyboard.hpp"
 #include "game/tile_data.hpp"
+#include "game/mesh.hpp"
+#include "game/level_builder.hpp"
 
 #include "gl/vertex_array.hpp"
 #include "gl/shader.hpp"
 #include "gl/camera.hpp"
 #include "gl/texture.hpp"
 
-TileDataManager tdm;
 
 int main() {
 	Window::loadOpenGL("jumbledFox's pushingBoxes");
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-	std::vector<TileData> tiles = {
-		{"Air",    0, TileColor::Black,     TileColor::Black,  63, 63},
-		{"Wall",   1, TileColor::LightGray, TileColor::Gray,   0,  0},
-		{"Grass",  0, TileColor::Lime,      TileColor::Green,  32, 32}
-
-		// MAYBE Special stuff
-		//{"Player", 0, TileColor::Orange,    TileColor::Black,  16, 16},
-		//{"Box",    0, TileColor::Orange,    TileColor::Purple, 8,  8}
-	};
-
-	tdm.addTilesData(tiles);
+	TileDataManager::initialise();
 
 	gl::Shader shader("res/shaders/block.vert", "res/shaders/block.frag");
 	gl::Texture spriteSheet("res/sprites.png", GL_RGB);
 	shader.use();
 
-	std::vector <GLfloat> verts {
-		-0.5f, -0.5f, -1.5f,  0, 0,  8,  1,  1, 3,
-		 0.5f, -0.5f, -1.5f,  1, 0,  8,  1,  1, 3,
-		 0.5f,  0.5f, -1.5f,  1, 1,  8,  1,  1, 3,
-		-0.5f,  0.5f, -1.5f,  0, 1,  8,  1,  1, 3
-	};
-
-	std::vector<GLuint> ind{
-		0, 1, 2,
-		2, 3, 0
-	};
-
-	gl::VertexArray va;
-
-	va.addVertexBuffer(verts, { { GL_FLOAT, 3, 0 }, { GL_FLOAT, 2, 0 }, { GL_FLOAT, 1, 0 }, { GL_FLOAT, 1, 0 }, { GL_FLOAT, 2, 0 } });
-	va.addIndexBuffer(ind);
+	
+	Level lvl;
+	lvl.buildMesh();
 
 
 	Camera cam(35.0f, 1.0f);
 
-	Entity ent(0.1f, { 0, 0, 0 }, { 90, 0, 0 }, { 0, 0, 0 });
+	Entity ent(0.1f, { 0, 5, 0 }, { 90, 0, 0 }, { 0, 0, 0 });
 
 	glm::mat4 model{1};
 
@@ -84,8 +62,14 @@ int main() {
 		if (Keyboard::keyHeld(GLFW_KEY_E))
 			ent.rotation.x += 1;
 
+		if (Keyboard::keyHeld(GLFW_KEY_R))
+			ent.rotation.y -= 1;
+
+		if (Keyboard::keyHeld(GLFW_KEY_F))
+			ent.rotation.y += 1;
+
 		cam.update(ent);
-		glClearColor(0.2f, 0.2f, 0.2f, 1);
+		glClearColor(26.f / 255.f, 28.f / 255.f, 44.f / 255.f, 1);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		shader.use();
@@ -98,7 +82,8 @@ int main() {
 
 		glUniformMatrix4fv(shader.getUniform("projectionViewMatrix"), 1, GL_FALSE, glm::value_ptr(cam.getViewProjection()));
 		glUniformMatrix4fv(shader.getUniform("modelMatrix"), 1, GL_FALSE, glm::value_ptr(model));
-		va.draw(GL_TRIANGLES);
+
+		lvl.mesh.vertexArray.draw(GL_TRIANGLES);
 
 		Window::endUpdate();
 	}

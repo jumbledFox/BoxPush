@@ -1,7 +1,7 @@
 #version 330
 
 layout (location = 0) in vec3 position;
-layout (location = 1) in vec2 textureCoords;
+layout (location = 1) in float textureCoords;
 layout (location = 2) in float textureID;
 layout (location = 3) in float lighting;
 layout (location = 4) in vec2 colors;
@@ -14,9 +14,16 @@ out vec2 fTexCoords;
 flat out unsigned int fTextureID;
 flat out unsigned ivec2 fColors;
 
+vec2 texCoords[4] = vec2[4](
+	vec2(1, 1),
+	vec2(0, 1),
+	vec2(0, 0),
+	vec2(1, 0)
+);
+
 void main() {
-	fLighting = lighting;
-	fTexCoords = textureCoords;
+	fLighting = lighting / 5;
+	fTexCoords = texCoords[int(textureCoords)];
 	fTextureID = uint(textureID);
 	fColors = unsigned ivec2(colors);
 

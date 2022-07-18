@@ -1,5 +1,18 @@
-##################
-#@      o        #
-#   b   ##       #
-#       ##       #
-##################
+#########       ..
+#@..o...#       .....
+#.b.#............. ..
+#...#o..#          .
+#########   ...    .
+            .b......
+            ...   ..
+// Tiles
+// . is air
+//   is grass
+// o is hole
+// # is wall
+
+// Entities
+// b is box
+// @ is where the player will spawn
+
+// all lines starting with // will be ignored

@@ -2,19 +2,34 @@
 
 #include <glm/glm.hpp>
 
-class Entity {
-public:
-	Entity(float mass = 0.1f, glm::vec3 pos = { 0, 0, 0 }, glm::vec3 rot = { 0, 0, 0 }, glm::vec3 headPos = { 0, 2, 0 });
+#include "mesh.hpp"
 
+struct Transform {
 	glm::vec3 position;
 	glm::vec3 rotation;
 
-	glm::vec3 headPos;
+	Transform() : position({ 0, 0, 0 }), rotation({ 0, 0, 0 }) {}
+	Transform(glm::vec3 pos, glm::vec3 rot) : position(pos), rotation(rot) {}
 
-	glm::vec3 velocity = { 0, 0, 0 };
-	glm::vec3 force = { 0, 0, 0 };
-	float mass;
+	Transform operator +(const Transform& obj) {
+		Transform result;
+		result.position = position + obj.position;
+		result.rotation = rotation + obj.rotation;
+		return result;
+	}
+};
 
+class Entity {
+public:
+	Entity(glm::vec3 pos = { 0, 0, 0 }, glm::vec3 rot = { 0, 0, 0 });
+
+	Transform transform;
+	Mesh mesh;
+
+	gl::VertexArray va;
 	glm::mat4 modelMatrix;
 	void updateMatrix();
+
+	void buildMesh(unsigned tex, TileColor col1, TileColor col2);
+	void buildMesh(unsigned topTex, TileColor topCol1, TileColor topCol2, unsigned sideTex, TileColor sideCol1, TileColor sideCol2);
 };

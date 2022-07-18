@@ -8,9 +8,9 @@ void Camera::updateProjView() {
 	m_projectionView = createProjectionViewMatrix(m_position, m_rotation, m_projection);
 }
 
-void Camera::update(const Entity& entity) {
-	m_position = entity.position + entity.headPos;
-	m_rotation = entity.rotation;
+void Camera::update(const Transform &transform) {
+	m_position = transform.position;
+	m_rotation = transform.rotation;
 
 	updateProjView();
 }

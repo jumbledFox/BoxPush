@@ -164,6 +164,7 @@
     <ClCompile Include="src\game\entity.cpp" />
     <ClCompile Include="src\game\level.cpp" />
     <ClCompile Include="src\game\level_builder.cpp" />
+    <ClCompile Include="src\game\level_loader.cpp" />
     <ClCompile Include="src\game\mesh.cpp" />
     <ClCompile Include="src\game\tile_data.cpp" />
     <ClCompile Include="src\gl\camera.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\game\entity.hpp" />
     <ClInclude Include="src\game\level.hpp" />
     <ClInclude Include="src\game\level_builder.hpp" />
+    <ClInclude Include="src\game\level_loader.hpp" />
     <ClInclude Include="src\game\mesh.hpp" />
     <ClInclude Include="src\game\tile_data.hpp" />
     <ClInclude Include="src\gl\camera.hpp" />

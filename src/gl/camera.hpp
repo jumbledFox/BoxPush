@@ -13,7 +13,7 @@ public:
 	Camera(float fov, float apsectRatio);
 
 	void updateProjView();
-	void update(const Entity& entity);
+	void update(const Transform& transform);
 
 	glm::mat4 getViewProjection() { return m_projectionView; }
 

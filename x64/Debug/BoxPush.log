@@ -1,24 +1,2 @@
-﻿  level.cpp
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\level.cpp(13,23): warning C4244: 'argument': conversion from 'T' to 'const unsigned __int64', possible loss of data
-          with
-          [
-              T=float
-          ]
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\level.cpp(17,18): warning C4244: 'argument': conversion from 'T' to 'const unsigned __int64', possible loss of data
-          with
-          [
-              T=float
-          ]
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\level.cpp(17,25): warning C4244: 'argument': conversion from 'T' to 'const unsigned __int64', possible loss of data
-          with
-          [
-              T=float
-          ]
-  level_builder.cpp
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\level_builder.cpp(26,122): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\level_builder.cpp(39,111): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  tile_data.cpp
-F:\Data\Projects\C++OpenGL\NewbieProjects\BoxPush\src\game\tile_data.cpp(31,45): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
-  main.cpp
-  Generating Code...
+﻿  level_loader.cpp
   BoxPush.vcxproj -> F:\Data\Projects\C++OpenGL\NewbieProjects\x64\Debug\BoxPush.exe

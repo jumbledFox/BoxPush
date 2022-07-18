@@ -3,7 +3,7 @@
 layout (location = 0) in vec3 position;
 layout (location = 1) in float textureCoords;
 layout (location = 2) in float textureID;
-layout (location = 3) in float lighting;
+layout (location = 3) in float light;
 layout (location = 4) in vec2 colors;
 
 uniform mat4 projectionViewMatrix;
@@ -22,7 +22,7 @@ vec2 texCoords[4] = vec2[4](
 );
 
 void main() {
-	fLighting = lighting / 5;
+	fLighting = light / 5;
 	fTexCoords = texCoords[int(textureCoords)];
 	fTextureID = uint(textureID);
 	fColors = unsigned ivec2(colors);

@@ -14,7 +14,7 @@ void Mesh::addFace(const MeshFace& face, const glm::vec3 position, GLuint textur
 		vertices.push_back(z);
 		vertices.push_back(i); // TexCoords
 		vertices.push_back(texture); // Texture ID
-		vertices.push_back(face.lightLevel * light); // Lighting
+		vertices.push_back(face.lightLevel * light); // Light
 		vertices.push_back(int(col1));
 		vertices.push_back(int(col2));
 	}

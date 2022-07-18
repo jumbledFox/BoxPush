@@ -41,14 +41,11 @@ struct TileData {
 	TextureData top;
 	TextureData side;
 
-	// How raised it is
-	int raised = 0;
+	TileData(std::string name, TextureData top, TextureData side) :
+		name(name), top(top), side(side) {}
 
-	TileData(std::string name, int r, TextureData top, TextureData side) :
-		name(name), raised(r), top(top), side(side) {}
-
-	TileData(std::string name, int r, TextureData t) :
-		name(name), raised(r), top(t), side(t) {}
+	TileData(std::string name, TextureData t) :
+		name(name), top(t), side(t) {}
 };
 
 

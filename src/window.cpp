@@ -1,5 +1,6 @@
 #include "window.hpp"
 
+#include "game/level_loader.hpp"
 #include "Input/Keyboard.hpp"
 #include "gl/stb_image.h"
 
@@ -58,6 +59,8 @@ void Window::loadOpenGL(std::string windowTitle) {
 
 	// Reset keyboard
 	Keyboard::initialise();
+	// Add aliases to the level loader
+	LevelLoader::defineAliases();
 }
 
 // Cursor Move Callback

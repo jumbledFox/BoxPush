@@ -9,23 +9,20 @@
 // This will have a vector of vector of numbers, these numbers will be the ID of the current tile
 
 using LevelTiles = std::vector<std::vector<tile_t>>;
+using LevelHeightMap = std::vector<std::vector<int8_t>>;
 class Level {
 public:
-	// All tiles
-	LevelTiles tiles{
-		{5, 5, 5, 5, 4, 4},
-		{4, 3, 1, 1, 1, 4, 4, 4},
-		{4, 4, 4, 1, 1, 1, 1, 4, 4},
-		{0, 0, 4, 1, 3, 3, 1, 1, 4},
-		{4, 4, 4, 3, 3, 4, 4, 4, 4},
-		{4, 1, 1, 3, 3, 4},
-		{4, 4, 4, 4, 4, 4}
-	};
+	// Constructor
+	Level(LevelTiles t, LevelHeightMap h);
 
-	// Builds the levels mesh
-	void buildMesh();
+	// All tiles
+	LevelTiles tiles;
+	// Height map
+	LevelHeightMap heights;
+
 	// Levels mesh
 	Mesh mesh;
 
 	tile_t getTile(glm::vec2 pos);
+	int8_t getHeight(glm::vec2 pos);
 };
